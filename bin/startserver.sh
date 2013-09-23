@@ -5,7 +5,7 @@ BASEPATH=`dirname $0`
 MONGOOSE_PATH=$BASEPATH/sleepy.mongoose
 
 if ! [ -d $MONGOOSE_PATH ] ; then
-    git clone git@github.com:10gen-labs/sleepy.mongoose.git $BASEPATH
+    git clone git@github.com:10gen-labs/sleepy.mongoose.git $BASEPATH/sleepy.mongoose
 fi
 
 if [ "`pidof mongod`" == "" ] ; then
