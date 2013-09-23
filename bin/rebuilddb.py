@@ -5,6 +5,7 @@ import json
 import os
 import sys
 
+import pymongo
 import requests
 
 basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -30,16 +31,13 @@ if os.path.exists(rcfile) and os.path.isfile(rcfile):
             print(line)
             print(exc)
 
-db_url='https://brettatoms.iriscouch.com/orchids'
+# db_url='https://brettatoms.iriscouch.com/orchids'
 #user = os.environ["CLOUDANT_USER"]
 #password = os.environ["CLOUDANT_PASSWORD"]
 
-for row in rows:
-    print(row)
-    response = requests.post(db_url, data=json.dumps(row),
-                             headers={"Content-Type": "application/json"},
-                             #auth=(user, password)
-    )
-    assert response.status_code == 201, "Error: {}".format(response.status_code)
-
+client = pymongo.MongoClient()
+db = client.orchids
+collection = db.orchids
+collection.remove()
+response = collection.insert(rows)
 print("{} orchids inserted".format(len(rows)))
