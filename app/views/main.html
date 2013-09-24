@@ -12,18 +12,19 @@
   <ul>
     <li class="orchid-line" ng-repeat="orchid in orchids track by $index">
       <a class="orchid-name "ng-click="show_detail($index)">
-        {{orchid.name}} - {{orchid.thumb_ids.length}}
+        {{orchid.name}} - {{orchid.thumbs.length}}
       </a>
-    <div class="orchid-detail" ng-show="show_index===$index">
-      <!-- {{orchid.thumb_ids}} -->
-      <div ng-switch="orchid.thumb_ids.length!==0">
-        <div ng-switch-when="true">
-          <img ng-repeat="image in detail_images[orchid.name]" src="{{image}}"></img>
-        </div>
-        <p ng-switch-when="false">No photos</p>
-      </div>
-      
-      
-    </div>
+      <div class="orchid-detail" ng-show="show_index===$index">
+        <div class="top-gradient"></div>
+        <div class="orchid-detail-content">
+          <div ng-switch="detail_images[orchid.name].length!==0">
+            <div ng-switch-when="true">
+              <img ng-repeat="image in detail_images[orchid.name]" src="{{image}}"></img>
+            </div>
+            <p ng-switch-when="false">No photos</p>
+          </div>
+          </div> <!-- .orchid-detail-content -->
+        <div class="bottom-gradient"></div>
+      </div> <!-- .orchid-detail -->
   </div>
  
