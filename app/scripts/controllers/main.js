@@ -6,7 +6,7 @@ angular.module('belizeorchidsApp')
         $scope.detail_images = {};
         $scope.orchid_counts = {}
 
-        var mongo_server = $location.host().match("belizebotanic.com") ?
+        var mongo_server = $location.host().indexOf("belizeorchids.com") >= 0 ?
             'http://mongodb.belizeorchids.com:27080' : 'http://localhost:27080',
             db = mongo_server + "/orchids",
             thumb_root = 'https://s3-us-west-2.amazonaws.com/www.belizeorchids.com/orchids/256x192/';
