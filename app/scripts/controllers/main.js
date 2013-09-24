@@ -11,8 +11,16 @@ angular.module('belizeorchidsApp')
             url: db + "/orchids/_find",
             params: {
                 limit: "500",
-                batch_size: "500"
+                batch_size: "500",
+                sort: {name: 1}
+                //fields: ["name, image_ids"]
             }
+        }
+
+        $scope.show_index = -1;
+        $scope.show_detail = function(index) {
+            console.log("index: ", index);
+            $scope.show_index = index;
         }
 
         $scope.get_counts = function(name) {
@@ -20,9 +28,11 @@ angular.module('belizeorchidsApp')
             console.log('{"name": ' + name + '}')
             var config = {
                 method: 'GET',
-                url: db + "/thumbs/_find",
+                //url: db + "/gridfs/thumbs/_find",
+                url: 'http://localhost:27080/orchids/fs/thumbs/_find',
                 params: {
-                    criteria: JSON.stringify({"name": name})
+                    //criteria: JSON.stringify({"name": name})
+                    criteria: {name: name}
                 }
             };
             $http(config)
@@ -40,9 +50,9 @@ angular.module('belizeorchidsApp')
             .success(function(data, status, headers, config) {
                 $scope.orchids = data.results;
                 data.results.forEach(function(orchid) {
-                    $scope.get_counts(orchid.name);
+                    //$scope.get_counts(orchid.name);
                 });
-                //console.log("data: ", data);
+                console.log("data: ", data);
             })
             .error(function(data, status, headers, config) {
                 // do something

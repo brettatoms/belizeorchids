@@ -1,5 +1,10 @@
 
-<h1>Orchids</h1>
-<div ng-repeat="orchid in orchids track by $index">
-{{orchid.name}} - {{orchid_counts[orchid.name]}}
-</div>
+<h1>Orchids of Belize</h1>
+  <ul>
+    <li class="orchid-line" ng-repeat="orchid in orchids track by $index">
+      <a class="orchid-name "ng-click="show_detail($index)">{{orchid.name}} - {{orchid.thumb_ids.length}}</a>
+    <div class="orchid-detail" ng-show="show_index===$index">
+      <p>This is the detail</p>
+    </div>
+  </div>
+ 
