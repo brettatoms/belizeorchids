@@ -54,7 +54,7 @@ for existing in existing_files:
 # delete all files on the server that don't exist locally unless in /font
 #files_to_delete = set(key_map.keys()).difference(local_files)
 for key_name in set(key_map.keys()).difference(local_files):
-    if not key_name.startswith("font/"):
+    if not key_name.startswith("font/") and not key_name.startswith("images/"):
         response = raw_input("delete {}? ".format(key_name))
         if response == 'y':
             print "deleting."
