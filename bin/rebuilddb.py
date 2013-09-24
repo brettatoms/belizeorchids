@@ -7,19 +7,26 @@ import sys
 
 import gridfs
 import pymongo
+from bson.binary import Binary
 
 basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 datapath = os.path.join(basepath, 'data')
 orchids_csv = os.path.join(datapath, "orchids.csv")
 
-client = pymongo.MongoClient()
+host="localhost"
+port=27017
+if len(sys.argv) > 1 and  sys.argv[1] == "production":
+    host="mongodb.belizeorchids.com"
+
+print("connection to {}:{}...".format(host, port ))
+client = pymongo.MongoClient(host, port)
 db = client.orchids
 
 # read in the orchid data
 rows = {}
 for line in open(orchids_csv):
     line = line.strip()
-    rows[line] = dict(name=line, thumb_ids=[])
+    rows[line] = dict(name=line, thumbs=[])
 
 
 # read environment variables
@@ -47,25 +54,16 @@ def filename_to_latin(filename):
     filename = filename.replace(" var ", " var. ")
     return filename
 
-print("adding images")
 
-thumbs = gridfs.GridFS(db, collection="thumbs")
-map(lambda t: thumbs.delete(t), thumbs.list())
+# add the images filenames which will be used to lookup them up on s3
 thumbs_path = os.path.join(basepath, "images", "orchids", "256x192")
 for filename in os.listdir(thumbs_path):
-    print(filename, filename_to_latin(filename))
+    #print(filename, ": ", filename_to_latin(filename))
     name = filename_to_latin(filename)
-    f = open(os.path.join(thumbs_path, filename), "rb")
-    image_id = thumbs.put(f.read(), name=name, filename=filename)
-    rows[name]["thumb_ids"].append(str(image_id))
-    #print(rows[name])
-    #sys.exit()
-    f.close()
+    rows[name]["thumbs"].append(filename)
 
-
-collection = db.orchids
-collection.remove()
-collection.create_index([("name", pymongo.DESCENDING)], unique=True)
-response = collection.insert(rows.values())
-print(rows["Bletia purpurea"])
+orchids = db.orchids
+orchids.remove()
+orchids.create_index([("name", pymongo.DESCENDING)], unique=True)
+response = orchids.insert(rows.values())
 print("{} orchids inserted".format(len(rows)))
