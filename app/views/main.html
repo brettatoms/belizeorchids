@@ -1,10 +1,29 @@
 
+<div class="row">
+  <div class="col-sm-offset-10 col-sm-offset-10 col-lg-2 col-sm-2">
+    <div id="search-container">
+      <input class="form-control input-sm" type="text" placeholder="Search">
+    </div>
+  </div>
+</div>
+
+
 <h1>Orchids of Belize</h1>
   <ul>
     <li class="orchid-line" ng-repeat="orchid in orchids track by $index">
-      <a class="orchid-name "ng-click="show_detail($index)">{{orchid.name}} - {{orchid.thumb_ids.length}}</a>
+      <a class="orchid-name "ng-click="show_detail($index)">
+        {{orchid.name}} - {{orchid.thumb_ids.length}}
+      </a>
     <div class="orchid-detail" ng-show="show_index===$index">
-      <p>This is the detail</p>
+      <!-- {{orchid.thumb_ids}} -->
+      <div ng-switch="orchid.thumb_ids.length!==0">
+        <div ng-switch-when="true">
+          <img ng-repeat="image in detail_images[orchid.name]" src="{{image}}"></img>
+        </div>
+        <p ng-switch-when="false">No photos</p>
+      </div>
+      
+      
     </div>
   </div>
  

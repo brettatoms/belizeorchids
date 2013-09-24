@@ -3,8 +3,10 @@
 angular.module('belizeorchidsApp')
     .controller('MainCtrl', function ($http, $scope) {
         $scope.orchids = [];
+        $scope.detail_images = {};
         $scope.orchid_counts = {}
-        var db = 'http://localhost:27080/orchids';
+        var server = 'http://localhost:27080',
+            db = server + "/orchids";
 
         var config = {
             method: 'GET',
@@ -21,6 +23,13 @@ angular.module('belizeorchidsApp')
         $scope.show_detail = function(index) {
             console.log("index: ", index);
             $scope.show_index = index;
+            var name = $scope.orchids[index].name;
+            $scope.detail_images[name] = [];
+
+            $scope.orchids[index].thumb_ids.forEach(function(thumb_id, thumb_index) {
+                $scope.detail_images[name][thumb_index] = db + "/thumbs/" + thumb_id;
+            });
+            console.log('images: ', $scope.detail_images[name]);
         }
 
         $scope.get_counts = function(name) {
