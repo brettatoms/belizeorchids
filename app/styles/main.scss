@@ -50,15 +50,44 @@ h1 {
 .orchid-detail {
     // background gradient generated at:  http://www.colorzilla.com/gradient-editor/
     // needs latest Compass, add '@import "compass"' to your scss
-    background-color: #333333; // Old browsers
-    @include filter-gradient(#333333, #333333, vertical); // IE6-8
-    // IE9 SVG, needs conditional override of 'filter' to 'none'
-    $experimental-support-for-svg: true;
-    @include background-image(linear-gradient(top,  #333333 0%,#464646 7%,#464646 93%,#333333 100%));
-    
+    background-color: $dark-grey; // Old browsers
+    /* @include filter-gradient(#333333, #333333, vertical); // IE6-8 */
+    /* // IE9 SVG, needs conditional override of 'filter' to 'none' */
+    /* $experimental-support-for-svg: true; */
+    /* @include background-image(linear-gradient(top,  #333333 0%,#464646 7%,#464646 93%,#333333 100%)); */
+ 
     color: $light-grey;
     //padding: .5em 2em;
+    //padding: 4em 2em;
+}
+
+ .orchid-detail-content {
     padding: 4em 2em;
+    img {
+        padding: 1em;
+    }
+}
+
+.top-gradient {
+    height: 1em;
+    // needs latest Compass, add '@import "compass"' to your scss
+    background-color: #464646; // Old browsers
+
+    @include filter-gradient(#333333, #464646, vertical); // IE6-8
+    // IE9 SVG, needs conditional override of 'filter' to 'none'
+    $experimental-support-for-svg: true;
+    @include background-image(linear-gradient(top,  #333333 0%,#464646 100%));
+}
+
+.bottom-gradient {
+    height: 1em;
+    
+    // needs latest Compass, add '@import "compass"' to your scss
+    background-color: #464646; // Old browsers
+    @include filter-gradient(#464646, #333333, vertical); // IE6-8
+    // IE9 SVG, needs conditional override of 'filter' to 'none'
+    $experimental-support-for-svg: true;
+    @include background-image(linear-gradient(top,  #464646 0%,#333333 100%));
 }
 
 ul {
