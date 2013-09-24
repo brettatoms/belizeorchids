@@ -1,0 +1,67 @@
+
+@import "compass";
+@import "compass/css3/images";
+
+$dark-grey: #464646;
+$light-grey: #fafafa;
+
+body {
+    background: $dark-grey;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+h1 {
+    padding: .6em .5em;
+}
+
+#main-container {
+    background: $light-grey;
+    padding: 0;
+    //padding: 2em;
+}
+
+#footer {
+    color: $light-grey;
+}
+
+.orchid-line {
+    color: $light-grey;
+    padding-bottom: .4em;
+}
+
+.orchid-name {
+    padding-left: 2em;
+    text-decoration: none !important;
+}
+
+.orchid-line:hover {
+    color: #0378A6;
+    text-decoration: none !important;
+}
+
+.orchid-detail {
+    // background gradient generated at:  http://www.colorzilla.com/gradient-editor/
+    // needs latest Compass, add '@import "compass"' to your scss
+    background-color: #333333; // Old browsers
+    @include filter-gradient(#333333, #333333, vertical); // IE6-8
+    // IE9 SVG, needs conditional override of 'filter' to 'none'
+    $experimental-support-for-svg: true;
+    @include background-image(linear-gradient(top,  #333333 0%,#464646 7%,#464646 93%,#333333 100%));
+    
+    color: $light-grey;
+    //padding: .5em 2em;
+    padding: 4em 2em;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+li {
+    padding: 0;
+    margin: 0;
+}
+
