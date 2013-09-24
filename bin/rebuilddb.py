@@ -5,8 +5,8 @@ import json
 import os
 import sys
 
+import gridfs
 import pymongo
-import requests
 
 basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 datapath = os.path.join(basepath, 'data')
@@ -31,13 +31,30 @@ if os.path.exists(rcfile) and os.path.isfile(rcfile):
             print(line)
             print(exc)
 
-# db_url='https://brettatoms.iriscouch.com/orchids'
-#user = os.environ["CLOUDANT_USER"]
-#password = os.environ["CLOUDANT_PASSWORD"]
-
 client = pymongo.MongoClient()
 db = client.orchids
 collection = db.orchids
 collection.remove()
 response = collection.insert(rows)
 print("{} orchids inserted".format(len(rows)))
+
+def filename_to_latin(filename):
+    # TODO: this could be replaced with a regex but we just want to get it working for now
+    index = filename.find("-")
+    if index > -1:
+        filename = filename[0:index]
+    else:
+        filename = filename[0:filename.find(".")]
+    filename = filename.replace('_', ' ').capitalize()
+    filename = filename.replace(" subsp ", " subsp. ")
+    filename = filename.replace(" var ", " var. ")
+    return filename
+
+print("adding images")
+thumbs = gridfs.GridFS(db, collection="thumbs")
+thumbs_path = os.path.join(basepath, "images", "orchids", "256x192")
+for thumb in os.listdir(thumbs_path):
+    print(thumb, filename_to_latin(thumb))
+    f = open(os.path.join(thumbs_path, thumb))
+    thumbs.put(f, name=filename_to_latin(thumb), filename=thumb)
+    f.close()
