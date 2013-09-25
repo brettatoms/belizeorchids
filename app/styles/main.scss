@@ -1,6 +1,24 @@
+$input-border-focus: orange !default;
 
-@import "compass";
+//@import "bootstrap-sass/lib/bootstrap";
+// Core variables and mixins
+@import "bootstrap-sass/lib/variables";
+@import "bootstrap-sass/lib/mixins";
+// Reset
+@import "bootstrap-sass/lib/normalize";
+@import "bootstrap-sass/lib/print";
+// Core CSS
+@import "bootstrap-sass/lib/scaffolding";
+@import "bootstrap-sass/lib/type";
+@import "bootstrap-sass/lib/forms";
+@import "bootstrap-sass/lib/grid";
+// Utility classes
+@import "bootstrap-sass/lib/utilities";
+@import "bootstrap-sass/lib/responsive-utilities";
+
 @import "compass/css3/images";
+@import "compass/css3/text-shadow";
+
 
 $dark-grey: #464646;
 $light-grey: #fafafa;
