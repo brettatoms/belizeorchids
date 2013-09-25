@@ -2,7 +2,8 @@
 <div class="row">
   <div class="col-sm-offset-10 col-sm-offset-10 col-lg-2 col-sm-2">
     <div id="search-container">
-      <input class="form-control input-sm" type="text" placeholder="Search">
+      <input class="form-control input-sm" type="text" ng-model="searchText" ng-change="onSearch()" 
+             placeholder="Search">
     </div>
   </div>
 </div>
@@ -10,7 +11,8 @@
 
 <h1>Orchids of Belize</h1>
   <ul>
-    <li class="orchid-line" ng-repeat="orchid in orchids track by $index">
+    <li class="orchid-line" ng-repeat="orchid in orchids track by $index" 
+        ng-show="searchedFor(orchid.name)">
       <a class="orchid-name "ng-click="show_detail($index)">
         {{orchid.name}} - {{orchid.thumbs.length}}
       </a>

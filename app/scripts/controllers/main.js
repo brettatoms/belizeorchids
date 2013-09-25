@@ -5,6 +5,7 @@ angular.module('belizeorchidsApp')
         $scope.orchids = [];
         $scope.detail_images = {};
         $scope.orchid_counts = {}
+        $scope.searchText = "";
 
         var mongo_server = $location.host().indexOf("belizeorchids.com") >= 0 ?
             'http://mongodb.belizeorchids.com:27080' : 'http://localhost:27080',
@@ -37,5 +38,12 @@ angular.module('belizeorchidsApp')
             })
             .error(function(data, status, headers, config) {
                 // do something
-            })
+            });
+
+
+        // return True/False is a name matched the search text
+        $scope.searchedFor = function(name) {
+            return $scope.searchText === "" || name.indexOf($scope.searchText)>=0
+        }
+
   });
