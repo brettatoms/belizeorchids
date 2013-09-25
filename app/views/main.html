@@ -21,7 +21,7 @@
         <div class="orchid-detail-content">
           <div ng-switch="detail_images[orchid.name].length!==0">
             <div ng-switch-when="true">
-              <img ng-repeat="image in detail_images[orchid.name]" src="{{image}}"></img>
+              <img ng-repeat="image in detail_images[orchid.name]" ng-src="{{image}}"></img>
             </div>
             <p ng-switch-when="false">No photos</p>
           </div>
