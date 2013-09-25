@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('belizeorchidsApp', ["ngRoute", "ngResource"])
+angular.module('belizeorchidsApp', ["ngRoute"])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
