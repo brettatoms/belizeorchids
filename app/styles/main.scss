@@ -99,7 +99,8 @@ h1 {
  .orchid-detail-content {
     padding: 4em 2em;
     img {
-        padding: 1em;
+        margin: 1em;
+        @include box-shadow(#333 0 0 10px); 
     }
 }
 
