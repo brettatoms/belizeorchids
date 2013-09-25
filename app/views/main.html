@@ -15,7 +15,7 @@
     <li class="orchid-line" ng-repeat="orchid in orchids track by $index" 
         ng-show="searchedFor(orchid.name)">
       <a class="orchid-name "ng-click="show_detail($index)">
-        {{orchid.name}} - {{orchid.thumbs.length}}
+        {{orchid.name}} <span ng-hide="{{orchid.thumbs.length}}==0">- {{orchid.thumbs.length}}</span>
       </a>
       <div class="orchid-detail" ng-show="show_index===$index">
         <div class="top-gradient"></div>
