@@ -43,7 +43,7 @@ angular.module('belizeorchidsApp')
 
         // return True/False is a name matched the search text
         $scope.searchedFor = function(name) {
-            return $scope.searchText === "" || name.indexOf($scope.searchText)>=0
+            return $scope.searchText === "" || name.search(new RegExp($scope.searchText, 'i'))>=0
         }
 
   });
