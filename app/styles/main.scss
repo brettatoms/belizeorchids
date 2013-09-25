@@ -98,6 +98,9 @@ h1 {
 
  .orchid-detail-content {
     padding: 4em 2em;
+    h3 {
+        color: $light-grey;
+    }
     img {
         margin: 1em;
         @include box-shadow(#222 0 0 10px); 

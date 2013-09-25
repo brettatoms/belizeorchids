@@ -20,6 +20,7 @@
       <div class="orchid-detail" ng-show="show_index===$index">
         <div class="top-gradient"></div>
         <div class="orchid-detail-content">
+          <h3>{{orchid.name}}</h3>
           <div ng-switch="detail_images[orchid.name].length!==0">
             <div ng-switch-when="true">
               <img ng-repeat="image in detail_images[orchid.name]" ng-src="{{image}}"></img>
