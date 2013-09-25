@@ -40,9 +40,20 @@ h1 {
 }
 
 #main-container {
-    background: $light-grey;
+    //background: $light-grey;
     padding: 0;
     //padding: 2em;
+}
+
+#main-page {
+    h1 {
+        @include text-shadow(rgba(black, 0.2) 2px 2px 0);
+        color: $light-grey;
+    }
+    ul {
+        padding: 2em 0;
+        background: $light-grey;
+    }
 }
 
 #footer {

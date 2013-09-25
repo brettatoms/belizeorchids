@@ -1,15 +1,16 @@
 
-<div class="row">
-  <div class="col-sm-offset-10 col-sm-offset-10 col-lg-2 col-sm-2">
-    <div id="search-container">
-      <input class="form-control input-sm" type="text" ng-model="searchText" ng-change="onSearch()" 
-             placeholder="Search">
+<div id="main-page">
+  <div class="row">
+    <div class="col-sm-offset-10 col-sm-offset-10 col-lg-2 col-sm-2">
+      <div id="search-container">
+        <input class="form-control input-sm" type="text" ng-model="searchText" ng-change="onSearch()" 
+               placeholder="Search">
+      </div>
     </div>
   </div>
-</div>
 
 
-<h1>Orchids of Belize</h1>
+  <h1>Orchids of Belize</h1>
   <ul>
     <li class="orchid-line" ng-repeat="orchid in orchids track by $index" 
         ng-show="searchedFor(orchid.name)">
@@ -25,8 +26,9 @@
             </div>
             <p ng-switch-when="false">No photos</p>
           </div>
-          </div> <!-- .orchid-detail-content -->
+        </div> <!-- .orchid-detail-content -->
         <div class="bottom-gradient"></div>
       </div> <!-- .orchid-detail -->
-  </div>
- 
+    </li>
+  </ul>
+</div>
