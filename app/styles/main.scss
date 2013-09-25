@@ -7,12 +7,17 @@ $light-grey: #fafafa;
 
 body {
     background: $dark-grey;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    //font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: #333; 
 }
 
-h1 {
+h1, h2, h3, h4, h5 {
+    font-family: 'Raleway', sans-serif;
     color: $dark-grey;
+}
+
+h1 {
     padding: 0 0 .6em .5em;
 }
 
