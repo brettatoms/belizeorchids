@@ -5,10 +5,6 @@ import json
 import os
 import sys
 
-import gridfs
-import pymongo
-from bson.binary import Binary
-
 basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 datapath = os.path.join(basepath, 'data')
 orchids_csv = os.path.join(datapath, "orchids.csv")
@@ -34,7 +30,7 @@ missing = set()
 orchid_lst=os.path.abspath(os.path.join(os.path.dirname(__file__), 'orchid.lst'))
 for filename in open(orchid_lst):
     filename = filename.strip()
-    print(filename, ": ", filename_to_latin(filename))
+    #print(filename, ": ", filename_to_latin(filename))
     name = filename_to_latin(filename)
     if name in orchids:
         orchids[name]['images'].append(filename)
