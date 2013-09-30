@@ -283,6 +283,11 @@ module.exports = function (grunt) {
                     src: [
                         'generated/*'
                     ]
+                }, {
+                    expand: true,
+                    cwd: 'data',
+                    dest: '<%= yeoman.dist %>/data',
+                    src: '{,*/}*.json'
                 }]
             },
             styles: {
@@ -290,22 +295,32 @@ module.exports = function (grunt) {
                 cwd: '<%= yeoman.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
+            },
+            data: {
+                expand: true,
+                cwd: 'data',
+                dest: '.tmp/data/',
+                //dest: '<%= yeoman.dist %>/data',
+                src: '{,*/}*.json'
             }
         },
         concurrent: {
             server: [
                 'coffee:dist',
                 //'copy:styles',
+                'copy:data',
                 'compass:server'
             ],
             test: [
                 'coffee',
                 //'copy:styles',
+                'copy:data',
                 'compass'
             ],
             dist: [
                 'coffee',
                 'compass:dist',
+                'copy:data',
                 //'copy:styles',
                 'imagemin',
                 'svgmin',
