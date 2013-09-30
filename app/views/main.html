@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col-sm-offset-10 col-sm-offset-10 col-lg-2 col-sm-2">
       <div id="search-container">
-        <input class="form-control input-sm" type="text" ng-model="searchText" ng-change="onSearch()" 
-               placeholder="Search">
+        <input class="form-control input-sm" type="text" ng-model="searchText" 
+               ng-change="onSearch()" placeholder="Search">
       </div>
     </div>
   </div>
@@ -12,18 +12,18 @@
 
   <h1>Orchids of Belize</h1>
   <ul>
-    <li class="orchid-line" ng-repeat="orchid in orchids track by $index" 
-        ng-show="searchedFor(orchid.name)">
-      <a class="orchid-name "ng-click="show_detail($index)">
-        {{orchid.name}} <span ng-hide="{{orchid.thumbs.length}}==0">- {{orchid.thumbs.length}}</span>
+    <li class="orchid-line" ng-repeat="(name, data) in orchids" 
+        ng-show="searchedFor(name)">
+      <a class="orchid-name" ng-click="show_detail(name, $index)">
+        {{name}} <span ng-hide="{{data.images.length}}==0">- {{data.images.length}}</span>
       </a>
       <div class="orchid-detail" ng-show="show_index===$index">
         <div class="top-gradient"></div>
         <div class="orchid-detail-content">
-          <h3>{{orchid.name}}</h3>
-          <div ng-switch="detail_images[orchid.name].length!==0">
+          <h3>{{name}}</h3>
+          <div ng-switch="detail_images[name].length!==0">
             <div ng-switch-when="true">
-              <img ng-repeat="image in detail_images[orchid.name]" ng-src="{{image}}"></img>
+              <img ng-repeat="image in detail_images[name]" ng-src="{{image}}"></img>
             </div>
             <p ng-switch-when="false">No photos</p>
           </div>
