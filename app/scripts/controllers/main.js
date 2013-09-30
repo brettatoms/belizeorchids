@@ -12,6 +12,11 @@ angular.module('belizeorchidsApp')
 
         $scope.show_index = -1;
         $scope.show_detail = function(name, index) {
+            if(index == $scope.show_index) {
+                // if we're already showing this one then collapse it
+                $scope.show_index = -1;
+                return;
+            }
             $scope.show_index = index;
             $scope.detail_images[name] = [];
             $scope.orchids[name].images.forEach(function(filename, thumb_index) {
