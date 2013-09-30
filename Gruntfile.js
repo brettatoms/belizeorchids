@@ -283,11 +283,6 @@ module.exports = function (grunt) {
                     src: [
                         'generated/*'
                     ]
-                }, {
-                    expand: true,
-                    cwd: 'data',
-                    dest: '<%= yeoman.dist %>/data',
-                    src: '{,*/}*.json'
                 }]
             },
             styles: {
@@ -300,7 +295,6 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'data',
                 dest: '.tmp/data/',
-                //dest: '<%= yeoman.dist %>/data',
                 src: '{,*/}*.json'
             }
         },
@@ -356,6 +350,11 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+        minjson: {
+            dist: {
+                files: { "<%= yeoman.dist %>/data/orchids.json": "data/orchids.json" }
+            }
         }
     });
 
@@ -389,6 +388,7 @@ module.exports = function (grunt) {
         'autoprefixer',
         'concat',
         'copy:dist',
+        'minjson',
         'cdnify',
         'ngmin',
         'cssmin',
