@@ -45,6 +45,10 @@ module.exports = function (grunt) {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
                 tasks: ['copy:styles', 'autoprefixer']
             },
+            data: {
+                files: ['data/{,*/}*.json'],
+                tasks: ['copy:data']
+            },
             livereload: {
                 options: {
                     livereload: LIVERELOAD_PORT
@@ -53,7 +57,9 @@ module.exports = function (grunt) {
                     '<%= yeoman.app %>/{,*/}*.html',
                     '.tmp/styles/{,*/}*.css',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
-                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+                    '.tmp/data/*.json',
+
                 ]
             }
         },
@@ -290,22 +296,31 @@ module.exports = function (grunt) {
                 cwd: '<%= yeoman.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
+            },
+            data: {
+                expand: true,
+                cwd: 'data',
+                dest: '.tmp/data/',
+                src: '{,*/}*.json'
             }
         },
         concurrent: {
             server: [
                 'coffee:dist',
                 //'copy:styles',
+                'copy:data',
                 'compass:server'
             ],
             test: [
                 'coffee',
                 //'copy:styles',
+                'copy:data',
                 'compass'
             ],
             dist: [
                 'coffee',
                 'compass:dist',
+                'copy:data',
                 //'copy:styles',
                 'imagemin',
                 'svgmin',
@@ -341,6 +356,11 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+        minjson: {
+            dist: {
+                files: { "<%= yeoman.dist %>/data/orchids.json": "data/orchids.json" }
+            }
         }
     });
 
@@ -374,6 +394,7 @@ module.exports = function (grunt) {
         'autoprefixer',
         'concat',
         'copy:dist',
+        'minjson',
         'cdnify',
         'ngmin',
         'cssmin',
