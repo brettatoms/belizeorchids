@@ -23,6 +23,7 @@ $input-border-focus: orange !default;
 
 $dark-grey: #464646;
 $light-grey: #fafafa;
+$blue-link: #067AB5;
 
 body {
     background-color: $dark-grey; // Old browsers
@@ -30,7 +31,6 @@ body {
     
     //font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-family: 'Raleway', sans-serif;
-    color: #333; 
 }
 
 h1, h2, h3, h4, h5 {
@@ -83,10 +83,11 @@ h1 {
     padding-left: 2em;
     text-decoration: none !important;
     font-size: 130%;
+    color: $blue-link;
 }
 
 .orchid-line:hover {
-    color: #0378A6;
+    color: darken($blue-link, 75%);
     text-decoration: none !important;
 }
 
