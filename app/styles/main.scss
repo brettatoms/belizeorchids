@@ -18,6 +18,7 @@ $input-border-focus: orange !default;
 
 @import "compass/css3/images";
 @import "compass/css3/text-shadow";
+@import "compass/css3/border-radius";
 
 
 $dark-grey: #464646;
@@ -55,6 +56,7 @@ h1 {
     ul {
         padding: 2em 0;
         background: $light-grey;
+        @include border-radius(8px);
     }
 }
 
