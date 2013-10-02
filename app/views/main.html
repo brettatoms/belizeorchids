@@ -15,7 +15,7 @@
     <li class="orchid-line" ng-repeat="(name, data) in orchids" 
         ng-show="searchedFor(name)">
       <a class="orchid-name" ng-click="show_detail(name, $index)">
-        {{name}} <span ng-hide="{{data.images.length}}==0">- {{data.images.length}}</span>
+        {{name}} <i ng-hide="{{data.images.length}}==0" class="icon-camera"></i>
       </a>
       <div class="orchid-detail" ng-show="show_index===$index">
         <div class="top-gradient"></div>

@@ -71,6 +71,10 @@ h1 {
 .orchid-line {
     color: $light-grey;
     padding-bottom: 1em;
+    
+    i {
+        margin-left: 1em;
+    }
 }
 
 .orchid-name {
