@@ -13,8 +13,11 @@ basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 datapath = os.path.join(basepath, 'data')
 orchids_lst = os.path.join(datapath, "orchids.lst")
 
-dest_path = os.path.join(basepath, "images", "orchids")
+dest_path = os.path.join(basepath, "app", "images", "orchids")
 thumb_path = os.path.join(dest_path, "256x192")
+
+if not os.path.exists(thumb_path):
+    os.mkdir(thumb_path)
 
 src_path = os.path.join("/archive/Pictures/orchids")
 if not os.path.exists(src_path):
@@ -29,10 +32,9 @@ def filename_to_latin(filename):
         filename = filename[0:index]
     else:
         filename = filename[0:filename.find(".")]
-    filename = filename.replace('_', ' ').capitalize()
-    filename = filename.replace(" subsp ", " subsp. ")
-    filename = filename.replace(" var ", " var. ")
-    return filename
+    filename = filename.replace("_subsp_", " subsp. ")
+    filename = filename.replace("_var_ ", " var. ")
+    return filename.replace('_', ' ').capitalize()
 
 
 def create_small_image(filename):
@@ -57,9 +59,10 @@ for line in open(orchids_lst):
 
     # create the thumbnail
     thumb_filename = os.path.join(thumb_path, filename)
-    if os.path.exists(path):
-        print("file already exists", thumb_filename)
-        sys.exit(1)
+    # TODO: create a command line arg to overwrite files if they exists
+    # if os.path.exists(path):
+    #     print("file already exists", thumb_filename)
+    #     sys.exit(1)
 
     print("converting: ", path)
     subprocess.call(["convert", path, "-thumbnail", "256x192", thumb_filename])

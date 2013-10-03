@@ -27,10 +27,11 @@ def filename_to_latin(filename):
     return filename
 
 missing = set()
-orchid_lst=os.path.abspath(os.path.join(os.path.dirname(__file__), 'orchid.lst'))
-for filename in open(orchid_lst):
-    filename = filename.strip()
+orchid_lst=os.path.abspath(os.path.join(datapath, 'orchids.lst'))
+for path in open(orchid_lst):
+    path = path.strip()
     #print(filename, ": ", filename_to_latin(filename))
+    parent_dir, filename = os.path.split(path)
     name = filename_to_latin(filename)
     if name in orchids:
         orchids[name]['images'].append(filename)
