@@ -101,7 +101,11 @@
         "synonyms": []
     },
     "Cattleya bowringiana": {
-        "images": [],
+        "images": [
+            "cattleya_bowringiana-1.jpg",
+            "cattleya_bowringiana-2.jpg",
+            "cattleya_bowringiana-7.jpg"
+        ],
         "synonyms": []
     },
     "Cattleya skinneri": {
@@ -125,7 +129,12 @@
         "synonyms": []
     },
     "Coelia bella": {
-        "images": [],
+        "images": [
+            "coelia_bella-3.jpg",
+            "coelia_bella-7.jpg",
+            "coelia_bella-9.jpg",
+            "coelia_bella-13.jpg"
+        ],
         "synonyms": []
     },
     "Comparetia falcata": {
@@ -133,7 +142,12 @@
         "synonyms": []
     },
     "Coryanthes speciosa": {
-        "images": [],
+        "images": [
+            "coryanthes_speciosa-4.jpg",
+            "coryanthes_speciosa-5.jpg",
+            "coryanthes_speciosa-8.jpg",
+            "coryanthes_speciosa-10.jpg"
+        ],
         "synonyms": []
     },
     "Corymborkis flava": {
@@ -181,7 +195,12 @@
         "synonyms": []
     },
     "Cycnoches egertonianum": {
-        "images": [],
+        "images": [
+            "cycnoches_egertonianum-1.jpg",
+            "cycnoches_egertonianum-2.jpg",
+            "cycnoches_egertonianum-3.jpg",
+            "cycnoches_egertonianum-4.jpg"
+        ],
         "synonyms": []
     },
     "Cycnoches glanduliferum": {
@@ -189,7 +208,13 @@
         "synonyms": []
     },
     "Cycnoches ventricosum": {
-        "images": [],
+        "images": [
+            "cycnoches_ventricosum-1.jpg",
+            "cycnoches_ventricosum-3.jpg",
+            "cycnoches_ventricosum-6.jpg",
+            "cycnoches_ventricosum-8.jpg",
+            "cycnoches_ventricosum-9.jpg"
+        ],
         "synonyms": []
     },
     "Cyrtopodium punctatum": {
