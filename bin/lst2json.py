@@ -7,15 +7,16 @@ import sys
 
 basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 datapath = os.path.join(basepath, 'data')
-orchids_csv = os.path.join(datapath, "orchids.csv")
+names_csv = os.path.join(datapath, "names.csv")
 
 orchids = {}
-for line in open(orchids_csv):
+for line in open(names_csv):
     line = line.strip()
     orchids[line] = dict(images=[], synonyms=[])
 
 def filename_to_latin(filename):
-    # TODO: this could be replaced with a regex but we just want to get it working for now
+    # TODO: this could be replaced with a regex but we just want to get it
+    # working for now
     index = filename.find("-")
     if index > -1:
         filename = filename[0:index]
@@ -27,17 +28,22 @@ def filename_to_latin(filename):
     return filename
 
 missing = set()
-orchid_lst=os.path.abspath(os.path.join(os.path.dirname(__file__), 'orchid.lst'))
-for filename in open(orchid_lst):
-    filename = filename.strip()
+pictures_lst=os.path.abspath(os.path.join(datapath, 'pictures.lst'))
+for path in open(pictures_lst):
+    path = path.strip()
     #print(filename, ": ", filename_to_latin(filename))
+    parent_dir, filename = os.path.split(path)
     name = filename_to_latin(filename)
     if name in orchids:
         orchids[name]['images'].append(filename)
     else:
         missing.add(name)
 
-data = json.dumps(orchids, sort_keys=True, indent=4, separators=(',', ': '))
-print(data)
+# dump the json to stdout
+print(json.dumps(orchids, sort_keys=True, indent=4, separators=(',', ': ')))
+
+# print the missing orchids to
+if len(missing) > 0:
+    print('** missing: ', file=sys.stderr)
 for name in sorted(missing):
-    print(name)
+    print(name, file=sys.stderr)
