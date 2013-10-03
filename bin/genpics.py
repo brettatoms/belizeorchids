@@ -11,7 +11,7 @@ line_rx = re.compile('(?:(?P<dir>.+)\/)?(?P<file>.*){1}(?:\:(?P<comment>.*?))?')
 
 basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 datapath = os.path.join(basepath, 'data')
-orchids_lst = os.path.join(datapath, "orchids.lst")
+pictures_lst = os.path.join(datapath, "pictures.lst")
 
 dest_path = os.path.join(basepath, "app", "images", "orchids")
 thumb_path = os.path.join(dest_path, "256x192")
@@ -43,8 +43,7 @@ def create_small_image(filename):
 def create_large_image(filename):
     pass
 
-orchids_lst=os.path.abspath(os.path.join(datapath, 'orchids.lst'))
-for line in open(orchids_lst):
+for line in open(pictures_lst):
     line = line.strip()
     match = line_rx.match(line)
     if not match:
@@ -59,14 +58,16 @@ for line in open(orchids_lst):
 
     # create the thumbnail
     thumb_filename = os.path.join(thumb_path, filename)
-    # TODO: create a command line arg to overwrite files if they exists
-    # if os.path.exists(path):
-    #     print("file already exists", thumb_filename)
-    #     sys.exit(1)
-
-    print("converting: ", path)
-    subprocess.call(["convert", path, "-thumbnail", "256x192", thumb_filename])
+    if os.path.exists(thumb_filename):
+        # TODO: create a command line arg to overwrite files if they exists
+        #print("file already exists", thumb_filename)
+        #sys.exit(1)
+        pass
+    else:
+        print("converting: ", path)
+        subprocess.call(["convert", path, "-thumbnail", "256x192", thumb_filename])
 
     # TODO: pass image through jpegtran to make it smaller
 
-    # TODO: create a larger version of the same image to display when we click on itpp
+    # TODO: create a larger version of the same image to display when we click
+    # on itpp
