@@ -29,12 +29,16 @@ angular.module('belizeorchidsApp')
             method: 'GET',
             url: "/data/orchids.json",
         }
+
+        $scope.loading = true;
         $http(config)
             .success(function(data, status, headers, config) {
                 $scope.orchids = data;
+                $scope.loading = false;
             })
             .error(function(data, status, headers, config) {
                 // do something
+                $scope.loading = false;
             });
 
 

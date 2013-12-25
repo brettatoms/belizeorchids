@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-sm-offset-10 col-sm-offset-10 col-lg-2 col-sm-2">
       <div id="search-container">
-        <input class="form-control input-sm" type="text" ng-model="searchText" 
+        <input class="form-control input-sm" type="text" ng-model="searchText"
                ng-change="onSearch()" placeholder="Search">
       </div>
     </div>
@@ -11,11 +11,14 @@
 
 
   <h1>Orchids of Belize</h1>
+  <div ng-show="loading" class="text-center">
+    <i class="loading-icon fa fa-spinner fa-spin fa-5x"></i>
+  </div>
   <ul>
-    <li class="orchid-line" ng-repeat="(name, data) in orchids" 
+    <li class="orchid-line" ng-repeat="(name, data) in orchids"
         ng-show="searchedFor(name)">
       <a class="orchid-name" ng-click="show_detail(name, $index)">
-        {{name}} <i ng-hide="{{data.images.length}}==0" class="icon-camera"></i>
+        {{name}} <i ng-hide="{{data.images.length}}==0" class="fa fa-camera"></i>
       </a>
       <div class="orchid-detail" ng-show="show_index===$index">
         <div class="top-gradient"></div>
