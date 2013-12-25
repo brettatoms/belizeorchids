@@ -28,6 +28,7 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         yeoman: yeomanConfig,
+        aws: grunt.file.readJSON(process.env.HOME + '/.aws.json'),
         watch: {
             coffee: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
@@ -366,6 +367,38 @@ module.exports = function (grunt) {
             dist: {
                 files: { "<%= yeoman.dist %>/data/orchids.json": "data/orchids.json" }
             }
+        },
+        /* jshint camelcase: false */
+        aws_s3: {
+            options: {
+                accessKeyId: '<%= aws.belizeorchids.accessKeyId %>',
+                secretAccessKey: '<%= aws.belizeorchids.secretAccessKey %>',
+                uploadConcurrency: 5, // 5 simultaneous uploads
+                downloadConcurrency: 5 // 5 simultaneous downloads
+            },
+            production: {
+                options: {
+                    bucket: 'belizeorchids.com',
+                    region: 'us-east-1',
+                    differential: true,
+                    //debug: true,
+                    sslEnabled: true
+                },
+                files: [
+                    {
+                        action: 'upload',
+                        cwd: '<%= yeoman.dist %>',
+                        src: '**',
+                        expand: true,
+                        dot: true
+                    },
+                    {
+                        action: 'delete',
+                        cwd: '<%= yeoman.dist %>',
+                        dest: '*'
+                    }
+                ]
+            }
         }
     });
 
@@ -406,6 +439,13 @@ module.exports = function (grunt) {
         'uglify',
         'rev',
         'usemin'
+    ]);
+
+    grunt.registerTask('deploy', [
+        //'jshint',
+        //'test',
+        'build',
+        'aws_s3:production'
     ]);
 
     grunt.registerTask('default', [
