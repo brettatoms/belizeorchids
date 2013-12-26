@@ -1,4 +1,3 @@
-
 <div id="main-page">
   <div class="row">
     <div class="col-sm-offset-10 col-sm-offset-10 col-lg-2 col-sm-2">
@@ -9,30 +8,39 @@
     </div>
   </div>
 
-
   <h1>Orchids of Belize</h1>
   <div ng-show="loading" class="text-center">
     <i class="loading-icon fa fa-spinner fa-spin fa-5x"></i>
   </div>
-  <ul>
-    <li class="orchid-line" ng-repeat="(name, data) in orchids"
-        ng-show="searchedFor(name)">
-      <a class="orchid-name" ng-click="show_detail(name, $index)">
-        {{name}} <i ng-hide="{{data.images.length}}==0" class="fa fa-camera"></i>
-      </a>
-      <div class="orchid-detail" ng-show="show_index===$index">
-        <div class="top-gradient"></div>
-        <div class="orchid-detail-content">
-          <h3>{{name}}</h3>
-          <div ng-switch="detail_images[name].length!==0">
-            <div ng-switch-when="true">
-              <img ng-repeat="image in detail_images[name]" ng-src="{{image}}"></img>
+  <div class="col-md-9">
+    <ul>
+      <li class="orchid-line" ng-repeat="(name, data) in orchids"
+          ng-show="searchedFor(name)">
+        <a class="orchid-name" ng-click="show_detail(name, $index)">
+          {{name}} <i ng-hide="{{data.images.length}}==0" class="fa fa-camera"></i>
+        </a>
+        <div class="orchid-detail" ng-show="show_index===$index">
+          <div class="top-gradient"></div>
+          <div class="orchid-detail-content">
+            <h3>{{name}}</h3>
+            <div ng-switch="detail_images[name].length!==0">
+              <div ng-switch-when="true">
+                <img ng-repeat="image in detail_images[name]" ng-src="{{image}}"></img>
+              </div>
+              <p ng-switch-when="false">No photos</p>
             </div>
-            <p ng-switch-when="false">No photos</p>
-          </div>
-        </div> <!-- .orchid-detail-content -->
-        <div class="bottom-gradient"></div>
-      </div> <!-- .orchid-detail -->
-    </li>
-  </ul>
-</div>
+          </div> <!-- .orchid-detail-content -->
+          <div class="bottom-gradient"></div>
+        </div> <!-- .orchid-detail -->
+      </li>
+    </ul>
+  </div> <!-- .col -->
+
+  <div class="col-md-3">
+    <a href="http://www.biblio.com/books/321992631.html">
+      <img src="images/book-cover.jpg">
+      <div class="text-center" style="width: 200px">Buy Now!</div>
+    </a>
+  </div> <!-- .col-md-3 -->
+
+</div> <!-- #main-page -->
